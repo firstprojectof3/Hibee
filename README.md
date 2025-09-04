@@ -61,8 +61,8 @@
 
 ---
 
-## 🛠️ 기술 스택 (예시)
-- **Frontend**: React Native / Expo
+## 🛠️ 기술 스택 
+- **Frontend**: React Native 
 - **Backend**: FastAPI, PostgreSQL
 - **AI/ML**: 사용자 패턴 분석, 추천 알고리즘
 - **Wearable API**: Apple Health, Google Fit 등 연동
