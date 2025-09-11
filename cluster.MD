@@ -34,9 +34,11 @@ https://www.aitimes.com/news/articleView.html?idxno=169481
 1. Responsible AI (책임 있는 AI)
 우리가 만들 AI가 “안전하고 믿을 만한가?”
 욕설·편향 필터링, 사실 검증, Explainable AI 같은 기능을 포함할지?
+-
 2. Multimodal AI (멀티모달 AI)
 텍스트 + 이미지 + 음성 + 영상 중 어떤 데이터를 함께 다루면 좋을까?
 예: 이미지·문서 분석 + Q&A, 음성+텍스트 챗봇
+-
 3. AI 효율/인프라 (Efficiency & Infrastructure)
 모델 경량화, 빠른 응답, GPU/클라우드 비용 최적화에 도전할지?
 예: 작은 모델 Fine-tuning, on-device 처리, MLOps
@@ -62,11 +64,11 @@ https://www.aitimes.com/news/articleView.html?idxno=169481
 📌 우리 팀 AI 프로젝트 4축 평가 & 발전 방향
 
 1. 모델 (Model)
-  지금까지 한 것
+- 지금까지 한 것
 OpenAI GPT API 활용 (Instruction Following, RAG 응용)
 프롬프트 엔지니어링으로 사용자 맞춤형 응답 설계
 
-  보완·발전할 부분
+- 보완·발전할 부분
 직접 소규모 모델 Fine-tuning 경험 (HuggingFace, LoRA)
 모델 경량화·최적화 실험 (Pruning, Quantization)
 도메인 특화 모델 비교/벤치마킹
@@ -74,11 +76,11 @@ OpenAI GPT API 활용 (Instruction Following, RAG 응용)
 👉 강조 포인트: “API만 쓴 게 아니라 모델을 직접 다뤄봤다”
 
 2. 데이터 (Data)
-  지금까지 한 것
+- 지금까지 한 것
 공지 크롤링 + 학번/전공 기반 필터링
 AWS RDS에 저장, 캐시 테이블 설계
 
-  보완·발전할 부분
+- 보완·발전할 부분
 다양한 소스 자동 수집 파이프라인 구축 (Airflow, Prefect)
 전처리·정제 자동화 (중복 제거, 라벨링, 텍스트 정규화)
 대용량 처리 경험 (PySpark, Hadoop, 클라우드 분산 처리)
@@ -86,12 +88,11 @@ AWS RDS에 저장, 캐시 테이블 설계
 👉 강조 포인트: “데이터를 모으고 관리하는 과정 전체를 경험했다”
 
 3. 서비스 (Service)
-
-  지금까지 한 것
+- 지금까지 한 것
 FastAPI + React Native로 앱/백엔드 완성
 AWS DB 연동, 캐시 기반 응답 처리
 
-  보완·발전할 부분
+- 보완·발전할 부분
 CI/CD 파이프라인 (GitHub Actions, Docker, Kubernetes) 구축
 클라우드 배포 경험 (AWS/GCP에서 End-to-End 운영)
 사용자 피드백 기반 기능 개선 사이클 운영
@@ -99,10 +100,10 @@ CI/CD 파이프라인 (GitHub Actions, Docker, Kubernetes) 구축
 👉 강조 포인트: “연구용이 아닌 실제 서비스 수준까지 올렸다”
 
 4. 검증 (Verification)
-  지금까지 한 것
+- 지금까지 한 것
 기본 QA 테스트 (422 오류 수정, 캐시 HIT/MISS 확인)
 
-  보완·발전할 부분
+- 보완·발전할 부분
 성능 평가 자동화 (정확도·BLEU·Rouge·F1 등 지표)
 안전성·편향 검증 (욕설 필터링, Fact-checking, Red Teaming)
 실시간 대시보드 (Streamlit, Dash, Grafana)
