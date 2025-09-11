@@ -47,6 +47,7 @@ https://www.aitimes.com/news/articleView.html?idxno=169481
 
 
 <AI 프로젝트 핵심 4축>
+
   모델 (Model)
 → 어떤 AI 모델을 쓰고, 직접 학습·튜닝까지 해봤는가?
 
