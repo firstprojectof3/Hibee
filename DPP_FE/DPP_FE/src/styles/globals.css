@@ -1,0 +1,172 @@
+@import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --ocean-blue: 189 85% 58%;
+    --ocean-light: 186 75% 85%;
+    --ocean-dark: 199 75% 45%;
+    --ocean-deep: 210 85% 28%;
+    --glass-bg: 186 70% 92%;
+    --text-primary: 210 85% 15%;
+    --text-secondary: 199 40% 40%;
+    --success: 142 76% 36%;
+    --warning: 38 92% 50%;
+    --error: 0 72% 51%;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    font-family: 'Pixelify Sans', 'Press Start 2P', monospace, cursive;
+    @apply bg-[#5EC8E5] text-[hsl(var(--text-primary))];
+    min-height: 100vh;
+    background: linear-gradient(180deg, #87CEEB 0%, #5EC8E5 30%, #4FB8D8 60%, #3DA8C8 100%);
+    background-attachment: fixed;
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: 'Press Start 2P', monospace;
+    line-height: 1.6;
+  }
+
+  h1 {
+    @apply text-4xl tracking-tight;
+  }
+
+  h2 {
+    @apply text-3xl tracking-tight;
+  }
+
+  h3 {
+    @apply text-2xl;
+  }
+
+  h4 {
+    @apply text-xl;
+  }
+
+  p {
+    @apply text-base leading-relaxed;
+  }
+
+  button {
+    font-family: 'Press Start 2P', monospace;
+  }
+
+  /* 큰 숫자용 폰트 */
+  .big-number {
+    font-family: 'Press Start 2P', monospace;
+  }
+}
+
+@layer utilities {
+  .glass {
+    @apply bg-white/30 backdrop-blur-sm border-4 border-white/60 shadow-[4px_4px_0px_0px_rgba(0,0,0,0.2)];
+    image-rendering: pixelated;
+  }
+
+  .glass-dark {
+    @apply bg-white/15 backdrop-blur-sm border-4 border-white/40 shadow-[4px_4px_0px_0px_rgba(0,0,0,0.15)];
+    image-rendering: pixelated;
+  }
+
+  .pixel-btn {
+    @apply border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] active:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] active:translate-x-[2px] active:translate-y-[2px];
+    image-rendering: pixelated;
+    transition: all 0.1s;
+  }
+
+  .pixel-btn-primary {
+    @apply bg-[#3DA8C8] text-white border-4 border-[#2A5D7C] shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] active:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] active:translate-x-[4px] active:translate-y-[4px];
+  }
+
+  .pixel-btn-secondary {
+    @apply bg-white/20 text-[hsl(var(--text-primary))] border-4 border-white/60 shadow-[6px_6px_0px_0px_rgba(0,0,0,0.3)] hover:bg-white/30 hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,0.3)] hover:translate-x-[2px] hover:translate-y-[2px];
+  }
+
+  .pixel-card {
+    @apply border-4 border-[#2A5D7C] shadow-[6px_6px_0px_0px_rgba(42,93,124,0.5)];
+    image-rendering: pixelated;
+  }
+
+  .pixel-icon-btn {
+    @apply w-12 h-12 bg-[#FFD700] border-4 border-[#DAA520] shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] active:shadow-none active:translate-x-[4px] active:translate-y-[4px] transition-all;
+    image-rendering: pixelated;
+  }
+}
+
+/* 물결 애니메이션 */
+@keyframes wave {
+  0%, 100% { transform: translateX(0) translateY(0); }
+  25% { transform: translateX(-10px) translateY(-5px); }
+  50% { transform: translateX(0) translateY(-10px); }
+  75% { transform: translateX(10px) translateY(-5px); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+@keyframes swim {
+  0% { transform: translateX(-100vw) translateY(0); }
+  100% { transform: translateX(100vw) translateY(-50px); }
+}
+
+@keyframes bubble-rise {
+  0% { 
+    transform: translateY(0) scale(0.8);
+    opacity: 0.7;
+  }
+  50% {
+    transform: translateY(-50vh) scale(1);
+    opacity: 0.5;
+  }
+  100% { 
+    transform: translateY(-100vh) scale(0.6);
+    opacity: 0;
+  }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.wave-animate {
+  animation: wave 6s ease-in-out infinite;
+}
+
+.float-animate {
+  animation: float 4s ease-in-out infinite;
+}
+
+.swim-animate {
+  animation: swim 20s linear infinite;
+}
+
+.bubble {
+  animation: bubble-rise 8s ease-in infinite;
+}
+
+.blink-animate {
+  animation: blink 2s ease-in-out infinite;
+}
+
+/* 픽셀 그리드 효과 */
+.pixel-grid {
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 8px 8px;
+}
