@@ -13,7 +13,7 @@
 | 사용할 소프트웨어 패키지의 명칭과 핵심 기능/용도 | **Frontend:** React Native, Android OS API<br>**Backend:** FastAPI, PostgreSQL, Node.js <br>**AI:** OpenAI API (GPT-5) |
 | 사용할 소프트웨어 패키지의 명칭과 URL | React Native: https://reactnative.dev<br>Android OS API: https://developer.android.com/?hl=ko<br>FastAPI: https://fastapi.tiangolo.com<br>PostgreSQL: https://www.postgresql.org<br>Node.js: https://nodejs.org/ko<br>OpenAI API:https://openai.com/ko-KR/index/openai-api/ |
 | 팀 그라운드 룰 URL | [Ground Rule 문서](https://github.com/firstprojectof3/Hibee/blob/main/GroundRule.MD) |
-| 최종 수정일 | 2025년 10월 2일 |
+| 최종 수정일 | 2025년 12월 18일 |
 
 
 
