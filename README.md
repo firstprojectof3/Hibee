@@ -1,6 +1,11 @@
 # Dolphin Pod 🐬  
 **과도한 디지털 자극에 노출된 현대인들을 위해 스마트폰 사용 패턴을 분석하여 무의식적인 충동 행동을 게임형 보상 시스템으로 개선하는 자기통제 어플리케이션**
 
+## 핵심 기술 코드
+- FE-BE-AI 파이프라인, 개인화 리포트:  https://github.com/firstprojectof3/HiBee_HoYeon
+- 사용자 입력(QnA), 알림 카테고라이징:  https://github.com/firstprojectof3/Hibee_Sieun
+- 총 사용 시간 데이터 수집:  https://github.com/firstprojectof3/HiBee_SeungHyeon
+
 
 ## Overview
 Dolphin Pod는 스마트폰 과다 사용으로 인한 도파민 과소비 문제를 해결하기 위한  
@@ -96,7 +101,4 @@ AI는 원본 데이터를 직접 다루지 않고 가공된 구조화 데이터�
 
 ---
 
-## Individual Repositories 
-- 김호연:  https://github.com/firstprojectof3/HiBee_HoYeon
-- 양시은:  https://github.com/firstprojectof3/Hibee_Sieun
-- 이승현:  https://github.com/firstprojectof3/HiBee_SeungHyeon
+
