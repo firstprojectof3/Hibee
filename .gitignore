@@ -1,0 +1,9 @@
+.env
+**/.env
+node_modules/
+**/nod_modules/
+.vite/
+**/.vite/
+dist/
+build/
+.DS_Store
