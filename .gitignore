@@ -7,3 +7,23 @@ node_modules/
 dist/
 build/
 .DS_Store
+# secrets
+.env
+**/.env
+
+# node
+node_modules/
+**/node_modules/
+.vite/
+**/.vite/
+dist/
+build/
+
+# python
+venv/
+**/venv/
+__pycache__/
+**/__pycache__/
+
+# mac
+.DS_Store
