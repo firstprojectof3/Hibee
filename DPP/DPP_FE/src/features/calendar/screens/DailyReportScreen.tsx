@@ -1,0 +1,1 @@
+// Daily report screen component
