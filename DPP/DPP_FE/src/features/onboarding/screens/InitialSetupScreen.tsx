@@ -1,0 +1,1 @@
+// Initial setup screen component for onboarding

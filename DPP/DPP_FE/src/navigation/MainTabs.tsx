@@ -1,0 +1,1 @@
+// Main tabs navigation component
