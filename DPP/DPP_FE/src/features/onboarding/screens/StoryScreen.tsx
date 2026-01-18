@@ -1,1 +1,0 @@
-// Story screen component for onboarding

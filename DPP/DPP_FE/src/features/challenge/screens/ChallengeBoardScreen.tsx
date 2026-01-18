@@ -1,1 +1,0 @@
-// Challenge board screen component
