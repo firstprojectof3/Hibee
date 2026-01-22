@@ -1,0 +1,262 @@
+import React, {useCallback, useEffect, useMemo, useState,} from 'react';
+import {
+  Alert,
+  NativeModules,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
+
+type UsageRow = {
+  packageName: string;
+  appName: string;
+  usageTime: number; // seconds
+  firstTimeStamp: number; // ms
+  lastTimeStamp: number; // ms
+};
+
+const {UsageStatsModule} = NativeModules as {
+  UsageStatsModule?: {
+    checkPermission: () => Promise<boolean>;
+    showSettings: () => void;
+    getTodayUsage: () => Promise<UsageRow[]>;
+    getUnlockCount: () => Promise<number>;
+  };
+};
+
+export default function UsageStatsTestScreen() {
+  const [hasPermission, setHasPermission] = useState<boolean | null>(null);
+  const [rows, setRows] = useState<UsageRow[]>([]);
+  const [unlockCount, setUnlockCount] = useState<number>(0);
+  const [error, setError] = useState<string | null>(null);
+
+  const moduleAvailable = useMemo(() => !!UsageStatsModule, []);
+
+  const refreshPermission = useCallback(async () => {
+    if (!UsageStatsModule) return;
+    const ok = await UsageStatsModule.checkPermission();
+    setHasPermission(ok);
+    return ok;
+  }, []);
+
+  const fetchUnlockCount = useCallback(async () => {
+    if (!UsageStatsModule) return 0;
+    const count = await UsageStatsModule.getUnlockCount();
+    setUnlockCount(count);
+    return count;
+  }, []);
+
+  const fetchUsage = useCallback(async (): Promise<UsageRow[]> => {
+    if (!UsageStatsModule) return [];
+    setError(null);
+    const data = await UsageStatsModule.getTodayUsage();
+    const normalized = Array.isArray(data) ? data : [];
+    setRows(normalized);
+    return normalized;
+  }, []);
+
+  const formatLocalDate = useCallback((): string => {
+    const d = new Date();
+    const y = d.getFullYear();
+    const m = String(d.getMonth() + 1).padStart(2, '0');
+    const day = String(d.getDate()).padStart(2, '0');
+    return `${y}-${m}-${day}`;
+  }, []);
+
+  const syncUsageData = useCallback(async (data: UsageRow[], count?: number) => {
+    const logs = data.map(r => ({
+      package_name: r.packageName,
+      app_name: r.appName ||'Unknown', 
+      usage_time: Math.round(r.usageTime), // seconds
+      start_time: new Date(r.firstTimeStamp).toISOString(),
+      end_time: new Date(r.lastTimeStamp).toISOString(),
+      unlock_count: count ?? 0, // 개별 앱별 언락 횟수는 알기 어려우므로 0으로 기록
+      category: 'Uncategorized',
+
+      is_night_mode: false,
+    }));
+
+    const payload = {
+      logs:logs,
+      unlock_count: count ?? 0,
+    };
+
+    const BASE_URL = 'http://10.0.2.2:8000'; // Android 에뮬레이터용 localhost
+    try {
+        const response = await fetch(`${BASE_URL}/api/v1/logs`,{
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+      });
+      if (response.ok) {
+        const result = await response.json();
+        console.log('[UsageStats] 서버 응답:', result);
+
+        await fetchUsage();
+        await fetchUnlockCount();
+        
+        Alert.alert('성공');
+
+      } else {
+        console.error('[UsageStats] 서버 오류:', response.status, response.statusText);
+    }
+    } catch (e) {
+      console.error('[UsageStats] 네트워크 에러', e);
+    }
+    console.log('[UsageStats] payload\n', JSON.stringify(payload, null, 2));
+  }, [formatLocalDate]);
+
+  useEffect(() => {
+    let alive = true;
+    (async () => {
+      try {
+        if (!moduleAvailable) {
+          setError(
+            'Native module not linked. Android에서 UsageStatsPackage 등록 및 rebuild가 필요합니다.',
+          );
+          return;
+        }
+        const ok = await refreshPermission();
+        if (!alive) return;
+        if (ok) {
+          const data = await fetchUsage();
+          if (data.length > 0) {
+            syncUsageData(data);
+          }
+        }
+      } catch (e: any) {
+        setError(e?.message ?? String(e));
+      }
+    })();
+    return () => {
+      alive = false;
+    };
+  }, [fetchUsage, moduleAvailable, refreshPermission]);
+
+  const onOpenSettings = useCallback(() => {
+    UsageStatsModule?.showSettings();
+  }, []);
+
+  const onReload = useCallback(async () => {
+    try {
+      const ok = await refreshPermission();
+      if (ok) {
+        const data = await fetchUsage();
+        const count = await fetchUnlockCount();
+        if (data.length > 0) {
+          syncUsageData(data, count);
+        }
+      }
+    } catch (e: any) {
+      setError(e?.message ?? String(e));
+    }
+  }, [fetchUsage, fetchUnlockCount,refreshPermission, syncUsageData]);
+
+  return (
+    <View style={styles.container}>
+      <Text style={styles.title}>UsageStats 테스트</Text>
+
+      <View style={styles.unlockCard}>
+      <Text style={styles.label}>오늘의 총 언락 횟수</Text>
+      <Text style={styles.unlockValue}>{unlockCount}회</Text>
+    </View>
+
+      {!moduleAvailable && (
+        <Text style={styles.error}>
+          UsageStatsModule이 없습니다. (패키지 등록/빌드 필요)
+        </Text>
+      )}
+
+      {error && <Text style={styles.error}>{error}</Text>}
+
+      <View style={styles.row}>
+        <Text style={styles.label}>권한:</Text>
+        <Text style={styles.value}>
+          {hasPermission === null ? '확인 중...' : hasPermission ? '허용' : '거부'}
+        </Text>
+      </View>
+
+      {!hasPermission && (
+        <TouchableOpacity style={styles.button} onPress={onOpenSettings}>
+          <Text style={styles.buttonText}>설정으로 이동</Text>
+        </TouchableOpacity>
+      )}
+
+      <TouchableOpacity style={styles.buttonSecondary} onPress={onReload}>
+        <Text style={styles.buttonText}>새로고침</Text>
+      </TouchableOpacity>
+
+      <ScrollView style={styles.list}>
+        {rows.map(r => {
+          const minutes = r.usageTime / 60;
+          return (
+            <View key={r.packageName} style={styles.item}>
+              <Text style={styles.pkg}>{r.packageName}</Text>
+              <Text style={styles.time}>{minutes.toFixed(1)}분</Text>
+            </View>
+          );
+        })}
+        {hasPermission && rows.length === 0 && (
+          <Text style={styles.muted}>
+            데이터가 없습니다. (0초 앱은 필터링되어 제외됩니다)
+          </Text>
+        )}
+      </ScrollView>
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {flex: 1, padding: 16, backgroundColor: '#0b0c10'},
+  title: {color: '#ffffff', fontSize: 18, fontWeight: '700', marginBottom: 12},
+  row: {flexDirection: 'row', alignItems: 'center', marginBottom: 12},
+  label: {color: '#9aa0a6', marginRight: 8},
+  value: {color: '#ffffff', fontWeight: '600'},
+  button: {
+    backgroundColor: '#4f46e5',
+    paddingVertical: 12,
+    paddingHorizontal: 14,
+    borderRadius: 10,
+    marginBottom: 10,
+  },
+  buttonSecondary: {
+    backgroundColor: '#1f2937',
+    paddingVertical: 12,
+    paddingHorizontal: 14,
+    borderRadius: 10,
+    marginBottom: 12,
+  },
+  buttonText: {color: '#ffffff', textAlign: 'center', fontWeight: '700'},
+  list: {flex: 1},
+  item: {
+    paddingVertical: 12,
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    borderBottomColor: '#2b2f36',
+  },
+  pkg: {color: '#ffffff', fontWeight: '600', marginBottom: 4},
+  time: {color: '#9aa0a6'},
+  muted: {color: '#9aa0a6', marginTop: 16},
+  error: {color: '#f87171', marginBottom: 8},
+
+  unlockCard: {
+    backgroundColor: '#1f2937',
+    padding: 16,
+    borderRadius: 12,
+    marginBottom: 20,
+    alignItems: 'center',
+    borderWidth: 1,
+    borderColor: '#4f46e5',
+  },
+  unlockValue: {
+    color: '#4f46e5',
+    fontSize: 32,
+    fontWeight: '800',
+    marginTop: 4,
+  },
+
+});
+
