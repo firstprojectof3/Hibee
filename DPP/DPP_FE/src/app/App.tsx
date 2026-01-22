@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // // Main App component
 // import React from 'react';
 // import { AppProviders } from "./providers/AppProviders";
@@ -48,3 +49,17 @@ const styles = StyleSheet.create({
 });
 
 export default App;
+=======
+// Main App component
+import React from 'react';
+import { AppProviders } from "./providers/AppProviders";
+import { AppBootstrap } from "./bootstrap/AppBootstrap";
+
+export default function App() {
+    return (
+        <AppProviders>
+            <AppBootstrap />
+        </AppProviders>
+    );
+}
+>>>>>>> 08566d6ed7608b3fc30869a43716f20a3280fc3c
