@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+
+from .log import AppUsageLogBase, AppUsageLogCreate, AppUsageLogResponse
+
+=======
 from pydantic import BaseModel
 from datetime import datetime
 from typing import List
@@ -19,3 +24,4 @@ class AppUsageLogCreate(BaseModel):
 class AppUsageLogResponse(AppUsageLogBase):
     id : int
     user_id : int
+>>>>>>> 08566d6ed7608b3fc30869a43716f20a3280fc3c

@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+
+
+=======
+>>>>>>> 08566d6ed7608b3fc30869a43716f20a3280fc3c
 from sqlalchemy import Column, Integer, String, Text
 from app.core.database import Base
 from sqlalchemy.orm import relationship
@@ -13,7 +18,15 @@ class Users(Base):
     current_xp = Column(Integer, nullable=True)
     equipped_character = Column(String(100), nullable=True)
     coin = Column(Integer, default=0)
+<<<<<<< HEAD
+
     Night_time = Column(Integer, default=False)
+    night_mode_start = Column(String, default="23:00")
+    night_mode_end = Column(String, default="07:00")
+    
+=======
+    Night_time = Column(Integer, default=False)
+>>>>>>> 08566d6ed7608b3fc30869a43716f20a3280fc3c
     # created_at = Column(DateTime, default=datetime.now())
     # updated_at = Column(DateTime, default=datetime.now())
 

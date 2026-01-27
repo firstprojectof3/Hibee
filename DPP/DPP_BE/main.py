@@ -1,4 +1,8 @@
 
+from app.api.v1.endpoints.log import router as log_router
+from app.api.v1.endpoints.auth import router as auth_router
+from app.api.v1.endpoints.log import router as log_router
+
 from pydoc import describe
 from fastapi import FastAPI, Depends, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
@@ -16,6 +20,9 @@ from sqlalchemy.orm import Session
 # python -m venv venv
 # .\venv\Scripts\activate
 # pip install -r requirements.txt
+
+# uvicorn main:app --reload : 로컬 테스트용
+#  uvicorn main:app --host 0.0.0.0 --port 8000 --reload : 외부 접속 허용
 
 # uvicorn app.main:app --reload
 
@@ -38,12 +45,17 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+app.include_router(log_router, prefix="/api/v1/logs",tags=["logs"])
+app.include_router(auth_router, prefix="/api/v1/auth", tags=["auth"])
+
+
 @app.get("/")
 def dolphin_pod_check():
     return {
         "status" : "ok",
         "message" : " 🐬 돌고래들이 헤엄치고 있어요 "
     }
+
 
 @app.post("/logs",response_model=dict)
 def upload_logs(
@@ -75,6 +87,7 @@ def upload_logs(
 
 # from api.v1.endpoints import users, usage_logs
 # app.include_router(users.router, prefix="/api/v1/users",tags=["users"])
+
 
 if __name__ == "__main__":
     import uvicorn

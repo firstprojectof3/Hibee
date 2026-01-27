@@ -3,7 +3,6 @@ import logging
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-
 logger = logging.getLogger("dpp_ai")
 logging.basicConfig(level=logging.INFO)
 
