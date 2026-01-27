@@ -46,6 +46,9 @@ def create_app() -> FastAPI:
     from app.routers.checkin_question import router as checkin_question_router
     app.include_router(checkin_question_router)
 
+    from app.routers import report
+    app.include_router(report.router)
+
     return app
 
 app = create_app()
