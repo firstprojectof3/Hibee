@@ -325,11 +325,10 @@ npm run lint    # ESLint
 
 ## 9. Team HiBee
 
-- **김호연** — 프로젝트 기획, FE–BE–AI 구조 설계, AI 서버 구축
-- **양시은** — 기능 기획, 데이터 구조 설계, 체크인·알림 수집 구조
-- **이승현** — Android Native 데이터 수집 로직 설계 및 구현
+- **김호연** — AI 파이프라인 설계 및 구현, 멀티 에이전트 기반 품질 검증, AI 및 시스템 통합 테스트
+- **양시은** — 사용자 흐름·화면·멀티 에이전트 설계, API 연동 및 사용자 입력 상태 
+처리, UI 안정화·발표 자료 디자인 및 시각화 
+- **이승현** — BE 및 DB 설계, DB 구조 및 RAG 설계, API 설계 및 구현, DB와 API 구조 
+고도화 및 성능 검증 
 
-### 핵심 기술 코드 (개인별 저장소)
-- FE–BE–AI 파이프라인, 개인화 리포트: <https://github.com/firstprojectof3/HiBee_HoYeon>
-- 사용자 입력(QnA), 알림 카테고라이징: <https://github.com/firstprojectof3/Hibee_Sieun>
-- 총 사용 시간 데이터 수집: <https://github.com/firstprojectof3/HiBee_SeungHyeon>
+
