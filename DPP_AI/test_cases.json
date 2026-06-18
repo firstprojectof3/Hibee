@@ -1,0 +1,465 @@
+[
+  {
+    "id": "normal_01",
+    "_intent": "정상: 목표 초과한 평일 저녁 집중 사용",
+    "snapshot": {
+      "date": "2026-06-17",
+      "total_usage_sec": 16200,
+      "unlock_count": 23,
+      "max_continuous_sec": 2700,
+      "app_launch_count": 41,
+      "time_of_day_buckets_sec": { "morning": 3600, "afternoon": 5400, "evening": 7200 },
+      "top_apps_json": [
+        { "app_name": "Instagram", "package_name": "com.instagram.android", "usage_sec": 5400 },
+        { "app_name": "YouTube", "package_name": "com.google.android.youtube", "usage_sec": 4200 }
+      ]
+    },
+    "user_configs": {
+      "daily_goal_sec": 14400,
+      "goals": ["저녁 사용 줄이기"],
+      "struggles": ["자기 전 습관적 사용"],
+      "active_times": ["evening"],
+      "checkin_time": "22:00",
+      "day_rollover_time": "04:00"
+    }
+  },
+  {
+    "id": "normal_02",
+    "_intent": "정상: 목표 이내 균형 잡힌 사용",
+    "snapshot": {
+      "date": "2026-06-17",
+      "total_usage_sec": 9800,
+      "unlock_count": 14,
+      "max_continuous_sec": 1500,
+      "app_launch_count": 22,
+      "time_of_day_buckets_sec": { "morning": 3200, "afternoon": 3600, "evening": 3000 },
+      "top_apps_json": [
+        { "app_name": "KakaoTalk", "package_name": "com.kakao.talk", "usage_sec": 3000 },
+        { "app_name": "Naver", "package_name": "com.nhn.android.search", "usage_sec": 2400 }
+      ]
+    },
+    "user_configs": {
+      "daily_goal_sec": 12000,
+      "goals": ["균형 유지"],
+      "struggles": [],
+      "active_times": ["afternoon"],
+      "checkin_time": "21:00",
+      "day_rollover_time": "04:00"
+    }
+  },
+  {
+    "id": "normal_03",
+    "_intent": "정상: 오전 집중형, 짧은 세션 다수",
+    "snapshot": {
+      "date": "2026-06-17",
+      "total_usage_sec": 7200,
+      "unlock_count": 38,
+      "max_continuous_sec": 600,
+      "app_launch_count": 55,
+      "time_of_day_buckets_sec": { "morning": 4800, "afternoon": 1800, "evening": 600 },
+      "top_apps_json": [
+        { "app_name": "Gmail", "package_name": "com.google.android.gm", "usage_sec": 1800 },
+        { "app_name": "Slack", "package_name": "com.slack", "usage_sec": 1500 }
+      ]
+    },
+    "user_configs": {
+      "daily_goal_sec": 10800,
+      "goals": ["집중 시간 확보"],
+      "struggles": ["잦은 알림 확인"],
+      "active_times": ["morning"],
+      "checkin_time": "20:00",
+      "day_rollover_time": "04:00"
+    }
+  },
+  {
+    "id": "normal_04",
+    "_intent": "정상: SNS 비중 높은 오후 사용",
+    "snapshot": {
+      "date": "2026-06-17",
+      "total_usage_sec": 13500,
+      "unlock_count": 47,
+      "max_continuous_sec": 2100,
+      "app_launch_count": 63,
+      "time_of_day_buckets_sec": { "morning": 2400, "afternoon": 8100, "evening": 3000 },
+      "top_apps_json": [
+        { "app_name": "Instagram", "package_name": "com.instagram.android", "usage_sec": 6000 },
+        { "app_name": "TikTok", "package_name": "com.zhiliaoapp.musically", "usage_sec": 4500 }
+      ]
+    },
+    "user_configs": {
+      "daily_goal_sec": 12000,
+      "goals": ["SNS 사용 줄이기"],
+      "struggles": ["스크롤 습관"],
+      "active_times": ["afternoon"],
+      "checkin_time": "22:00",
+      "day_rollover_time": "04:00"
+    }
+  },
+  {
+    "id": "normal_05",
+    "_intent": "정상: 동영상 장시간 연속 시청",
+    "snapshot": {
+      "date": "2026-06-17",
+      "total_usage_sec": 15000,
+      "unlock_count": 12,
+      "max_continuous_sec": 5400,
+      "app_launch_count": 18,
+      "time_of_day_buckets_sec": { "morning": 1200, "afternoon": 4800, "evening": 9000 },
+      "top_apps_json": [
+        { "app_name": "YouTube", "package_name": "com.google.android.youtube", "usage_sec": 7200 },
+        { "app_name": "Netflix", "package_name": "com.netflix.mediaclient", "usage_sec": 5400 }
+      ]
+    },
+    "user_configs": {
+      "daily_goal_sec": 14400,
+      "goals": ["저녁 영상 시청 줄이기"],
+      "struggles": ["연속 시청"],
+      "active_times": ["evening"],
+      "checkin_time": "23:00",
+      "day_rollover_time": "04:00"
+    }
+  },
+  {
+    "id": "normal_06",
+    "_intent": "정상: 가벼운 사용일 (목표 한참 이내)",
+    "snapshot": {
+      "date": "2026-06-17",
+      "total_usage_sec": 4200,
+      "unlock_count": 9,
+      "max_continuous_sec": 900,
+      "app_launch_count": 13,
+      "time_of_day_buckets_sec": { "morning": 1500, "afternoon": 1800, "evening": 900 },
+      "top_apps_json": [
+        { "app_name": "KakaoTalk", "package_name": "com.kakao.talk", "usage_sec": 1800 }
+      ]
+    },
+    "user_configs": {
+      "daily_goal_sec": 10800,
+      "goals": ["현재 습관 유지"],
+      "struggles": [],
+      "active_times": ["afternoon"],
+      "checkin_time": "21:00",
+      "day_rollover_time": "04:00"
+    }
+  },
+  {
+    "id": "normal_07",
+    "_intent": "정상: 게임 중심 사용",
+    "snapshot": {
+      "date": "2026-06-17",
+      "total_usage_sec": 11700,
+      "unlock_count": 19,
+      "max_continuous_sec": 3600,
+      "app_launch_count": 27,
+      "time_of_day_buckets_sec": { "morning": 1800, "afternoon": 3600, "evening": 6300 },
+      "top_apps_json": [
+        { "app_name": "LeagueOfLegends", "package_name": "com.riotgames.league.wildrift", "usage_sec": 6300 }
+      ]
+    },
+    "user_configs": {
+      "daily_goal_sec": 10800,
+      "goals": ["게임 시간 관리"],
+      "struggles": ["저녁 몰입"],
+      "active_times": ["evening"],
+      "checkin_time": "23:00",
+      "day_rollover_time": "04:00"
+    }
+  },
+  {
+    "id": "normal_08",
+    "_intent": "정상: 오전~오후 고른 업무용 사용",
+    "snapshot": {
+      "date": "2026-06-17",
+      "total_usage_sec": 10200,
+      "unlock_count": 31,
+      "max_continuous_sec": 1800,
+      "app_launch_count": 44,
+      "time_of_day_buckets_sec": { "morning": 4200, "afternoon": 4500, "evening": 1500 },
+      "top_apps_json": [
+        { "app_name": "Slack", "package_name": "com.slack", "usage_sec": 3600 },
+        { "app_name": "Notion", "package_name": "notion.id", "usage_sec": 2700 }
+      ]
+    },
+    "user_configs": {
+      "daily_goal_sec": 12000,
+      "goals": ["업무 집중"],
+      "struggles": [],
+      "active_times": ["morning", "afternoon"],
+      "checkin_time": "19:00",
+      "day_rollover_time": "04:00"
+    }
+  },
+  {
+    "id": "normal_09",
+    "_intent": "정상: 잠금 해제 빈도 높은 산만형",
+    "snapshot": {
+      "date": "2026-06-17",
+      "total_usage_sec": 8400,
+      "unlock_count": 72,
+      "max_continuous_sec": 480,
+      "app_launch_count": 98,
+      "time_of_day_buckets_sec": { "morning": 2700, "afternoon": 3300, "evening": 2400 },
+      "top_apps_json": [
+        { "app_name": "KakaoTalk", "package_name": "com.kakao.talk", "usage_sec": 2400 },
+        { "app_name": "Instagram", "package_name": "com.instagram.android", "usage_sec": 2100 }
+      ]
+    },
+    "user_configs": {
+      "daily_goal_sec": 10800,
+      "goals": ["확인 습관 줄이기"],
+      "struggles": ["습관적 잠금 해제"],
+      "active_times": ["afternoon"],
+      "checkin_time": "22:00",
+      "day_rollover_time": "04:00"
+    }
+  },
+  {
+    "id": "normal_10",
+    "_intent": "정상: 독서/생산성 앱 중심",
+    "snapshot": {
+      "date": "2026-06-17",
+      "total_usage_sec": 6600,
+      "unlock_count": 16,
+      "max_continuous_sec": 2400,
+      "app_launch_count": 21,
+      "time_of_day_buckets_sec": { "morning": 2400, "afternoon": 2400, "evening": 1800 },
+      "top_apps_json": [
+        { "app_name": "Kindle", "package_name": "com.amazon.kindle", "usage_sec": 2400 },
+        { "app_name": "Notion", "package_name": "notion.id", "usage_sec": 1800 }
+      ]
+    },
+    "user_configs": {
+      "daily_goal_sec": 10800,
+      "goals": ["생산적 사용 유지"],
+      "struggles": [],
+      "active_times": ["morning"],
+      "checkin_time": "21:00",
+      "day_rollover_time": "04:00"
+    }
+  },
+  {
+    "id": "normal_11",
+    "_intent": "정상: 주말 늦은 기상 후 오후 집중",
+    "snapshot": {
+      "date": "2026-06-21",
+      "total_usage_sec": 12900,
+      "unlock_count": 26,
+      "max_continuous_sec": 3000,
+      "app_launch_count": 33,
+      "time_of_day_buckets_sec": { "morning": 600, "afternoon": 7200, "evening": 5100 },
+      "top_apps_json": [
+        { "app_name": "YouTube", "package_name": "com.google.android.youtube", "usage_sec": 5400 },
+        { "app_name": "Instagram", "package_name": "com.instagram.android", "usage_sec": 3600 }
+      ]
+    },
+    "user_configs": {
+      "daily_goal_sec": 14400,
+      "goals": ["주말 사용 관리"],
+      "struggles": ["늦잠 후 몰아보기"],
+      "active_times": ["afternoon", "evening"],
+      "checkin_time": "23:00",
+      "day_rollover_time": "04:00"
+    }
+  },
+  {
+    "id": "normal_12",
+    "_intent": "정상: 목표 근처지만 정상 범위",
+    "snapshot": {
+      "date": "2026-06-17",
+      "total_usage_sec": 11400,
+      "unlock_count": 21,
+      "max_continuous_sec": 1980,
+      "app_launch_count": 29,
+      "time_of_day_buckets_sec": { "morning": 3000, "afternoon": 4200, "evening": 4200 },
+      "top_apps_json": [
+        { "app_name": "Instagram", "package_name": "com.instagram.android", "usage_sec": 3600 },
+        { "app_name": "KakaoTalk", "package_name": "com.kakao.talk", "usage_sec": 3000 }
+      ]
+    },
+    "user_configs": {
+      "daily_goal_sec": 12000,
+      "goals": ["목표 유지"],
+      "struggles": ["저녁 사용"],
+      "active_times": ["evening"],
+      "checkin_time": "22:00",
+      "day_rollover_time": "04:00"
+    }
+  },
+  {
+    "id": "boundary_01",
+    "_intent": "경계: 사용 시간이 목표와 정확히 일치",
+    "snapshot": {
+      "date": "2026-06-17",
+      "total_usage_sec": 14400,
+      "unlock_count": 20,
+      "max_continuous_sec": 2400,
+      "app_launch_count": 30,
+      "time_of_day_buckets_sec": { "morning": 4800, "afternoon": 4800, "evening": 4800 },
+      "top_apps_json": [
+        { "app_name": "YouTube", "package_name": "com.google.android.youtube", "usage_sec": 4800 }
+      ]
+    },
+    "user_configs": {
+      "daily_goal_sec": 14400,
+      "goals": ["목표 달성"],
+      "struggles": [],
+      "active_times": ["afternoon"],
+      "checkin_time": "22:00",
+      "day_rollover_time": "04:00"
+    }
+  },
+  {
+    "id": "boundary_02",
+    "_intent": "경계: 잠금 해제 0회 (단일 장시간 세션)",
+    "snapshot": {
+      "date": "2026-06-17",
+      "total_usage_sec": 10800,
+      "unlock_count": 0,
+      "max_continuous_sec": 10800,
+      "app_launch_count": 1,
+      "time_of_day_buckets_sec": { "morning": 0, "afternoon": 0, "evening": 10800 },
+      "top_apps_json": [
+        { "app_name": "Netflix", "package_name": "com.netflix.mediaclient", "usage_sec": 10800 }
+      ]
+    },
+    "user_configs": {
+      "daily_goal_sec": 14400,
+      "goals": ["연속 시청 줄이기"],
+      "struggles": ["몰아보기"],
+      "active_times": ["evening"],
+      "checkin_time": "23:00",
+      "day_rollover_time": "04:00"
+    }
+  },
+  {
+    "id": "boundary_03",
+    "_intent": "경계: 단일 시간대에 모든 사용 집중",
+    "snapshot": {
+      "date": "2026-06-17",
+      "total_usage_sec": 13000,
+      "unlock_count": 5,
+      "max_continuous_sec": 13000,
+      "app_launch_count": 6,
+      "time_of_day_buckets_sec": { "morning": 0, "afternoon": 0, "evening": 13000 },
+      "top_apps_json": [
+        { "app_name": "YouTube", "package_name": "com.google.android.youtube", "usage_sec": 13000 }
+      ]
+    },
+    "user_configs": {
+      "daily_goal_sec": 14400,
+      "goals": ["저녁 사용 분산"],
+      "struggles": ["저녁 몰입"],
+      "active_times": ["evening"],
+      "checkin_time": "23:00",
+      "day_rollover_time": "04:00"
+    }
+  },
+  {
+    "id": "boundary_04",
+    "_intent": "경계: 초 단위 변환 규칙 자극 (59초/61초 경계값)",
+    "snapshot": {
+      "date": "2026-06-17",
+      "total_usage_sec": 3661,
+      "unlock_count": 8,
+      "max_continuous_sec": 59,
+      "app_launch_count": 11,
+      "time_of_day_buckets_sec": { "morning": 1830, "afternoon": 1772, "evening": 59 },
+      "top_apps_json": [
+        { "app_name": "KakaoTalk", "package_name": "com.kakao.talk", "usage_sec": 1830 }
+      ]
+    },
+    "user_configs": {
+      "daily_goal_sec": 10800,
+      "goals": ["짧은 사용 유지"],
+      "struggles": [],
+      "active_times": ["morning"],
+      "checkin_time": "20:00",
+      "day_rollover_time": "04:00"
+    }
+  },
+  {
+    "id": "boundary_05",
+    "_intent": "경계: 극단적 고사용 (목표 3배 초과)",
+    "snapshot": {
+      "date": "2026-06-17",
+      "total_usage_sec": 43200,
+      "unlock_count": 110,
+      "max_continuous_sec": 7200,
+      "app_launch_count": 150,
+      "time_of_day_buckets_sec": { "morning": 12000, "afternoon": 16200, "evening": 15000 },
+      "top_apps_json": [
+        { "app_name": "TikTok", "package_name": "com.zhiliaoapp.musically", "usage_sec": 18000 },
+        { "app_name": "YouTube", "package_name": "com.google.android.youtube", "usage_sec": 14400 }
+      ]
+    },
+    "user_configs": {
+      "daily_goal_sec": 14400,
+      "goals": ["사용 대폭 줄이기"],
+      "struggles": ["하루 종일 사용"],
+      "active_times": ["morning", "afternoon", "evening"],
+      "checkin_time": "23:00",
+      "day_rollover_time": "04:00"
+    }
+  },
+  {
+    "id": "anomaly_01",
+    "_intent": "이상: 모든 수치 0 (사용 없음) - writer가 빈 배열 반환해야 정상",
+    "snapshot": {
+      "date": "2026-06-17",
+      "total_usage_sec": 0,
+      "unlock_count": 0,
+      "max_continuous_sec": 0,
+      "app_launch_count": 0,
+      "time_of_day_buckets_sec": { "morning": 0, "afternoon": 0, "evening": 0 },
+      "top_apps_json": []
+    },
+    "user_configs": {
+      "daily_goal_sec": 14400,
+      "goals": [],
+      "struggles": [],
+      "active_times": [],
+      "checkin_time": "22:00",
+      "day_rollover_time": "04:00"
+    }
+  },
+  {
+    "id": "anomaly_02",
+    "_intent": "이상: 필수 필드 누락 (total_usage_sec 없음)",
+    "snapshot": {
+      "date": "2026-06-17",
+      "unlock_count": 15,
+      "time_of_day_buckets_sec": { "morning": 1200, "afternoon": 2400, "evening": 1800 }
+    },
+    "user_configs": {
+      "daily_goal_sec": 10800,
+      "goals": ["사용 관리"],
+      "struggles": [],
+      "active_times": ["afternoon"],
+      "checkin_time": "22:00",
+      "day_rollover_time": "04:00"
+    }
+  },
+  {
+    "id": "anomaly_03",
+    "_intent": "이상: 논리적으로 모순된 수치 (버킷 합 > 총 사용시간, 음수 포함)",
+    "snapshot": {
+      "date": "2026-06-17",
+      "total_usage_sec": 3600,
+      "unlock_count": -5,
+      "max_continuous_sec": 99999,
+      "app_launch_count": 8,
+      "time_of_day_buckets_sec": { "morning": 5000, "afternoon": 5000, "evening": 5000 },
+      "top_apps_json": [
+        { "app_name": "Unknown", "package_name": "", "usage_sec": -100 }
+      ]
+    },
+    "user_configs": {
+      "daily_goal_sec": 10800,
+      "goals": ["사용 관리"],
+      "struggles": [],
+      "active_times": ["afternoon"],
+      "checkin_time": "22:00",
+      "day_rollover_time": "04:00"
+    }
+  }
+]
