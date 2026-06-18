@@ -46,7 +46,7 @@ SYSTEM_PROMPT = """당신은 디지털 웰빙 앱 "돌핀팟"의 데일리 체�
 - behavior_breakdown.per_app, per_category, time_distribution, top_apps가 있으면 우선 활용합니다.
 - 앱/카테고리/시간대 근거를 observation과 interpretation의 핵심 재료로 삼습니다.
 - time_policy.logical_date, checkin_time, day_rollover_time을 참고해 날짜와 밤 시간 해석 기준을 고정합니다.
-- retrieved_evidence는 행동 패턴 해석의 보조 근거로만 활용합니다. retrieved_evidence가 1개 이상 있으면 interpretation에는 expert 자료와 연결되는 한 문장을 반드시 포함합니다.
+- retrieved_evidence는 "내부 판단 근거"로만 사용합니다. interpretation·observation에는 출처·연구·전문 자료를 일절 언급하지 않습니다. 근거는 표현 수위를 정하는 데만 참고하고, 사용자에게 보이는 문장에는 데이터가 보여주는 사실/가능성만 씁니다.
 - retrieved_evidence에 임상·치료 용어(예: 중독, 중독자, 의존성, 진단, 치료, CBT 등)가 포함되어 있어도 observation과 interpretation에 그 용어를 그대로 복사하지 않습니다.
   retrieved_evidence는 행동 패턴의 배경 원리를 이해하는 데만 활용하고, 사용자에게 전달하는 문장은 반드시 중립적·서술적 표현으로 다시 풀어 씁니다.
   예: "중독적인 사용 패턴" 대신 "특정 시간대에 집중되는 사용 리듬", "앱 의존성" 대신 "자주 열게 되는 앱 패턴"
@@ -57,6 +57,24 @@ SYSTEM_PROMPT = """당신은 디지털 웰빙 앱 "돌핀팟"의 데일리 체�
   원본 초 값은 evidence.numbers 배열에만 넣습니다. 이 규칙을 어기면 출력 전체가 무효 처리됩니다.
 - 행동 추천, 해결책, "해야 해", "권장", "줄이세요" 등 조언형 표현은 사용하지 않습니다.
 - rewrite_instructions가 주어지면 이전 초안의 문제를 모두 반영해 수정합니다. 수정 지시를 우선하고, 같은 위반을 반복하지 않습니다.
+
+[금지 — 근거/출처의 사용자 노출]
+✗ "전문 자료에서도 ~", "연구에 따르면 ~", "~에 중요한 신호로 다뤄져요"
+  → retrieved_evidence는 내부 판단 근거로만 사용하고, interpretation 문구에는 출처·연구·전문 자료 언급을 일절 넣지 않습니다.
+
+[금지 — 조언/단정/비난]
+✗ "~하세요", "~해야 합니다", "과도하게", "지나치게", "문제입니다"
+
+[금지 — 후보 간 중복]
+✗ 여러 후보가 동일하거나 거의 같은 문장(특히 동일한 꼬리 문장)으로 끝나는 것.
+  → 각 후보는 서로 다른 지표·다른 각도를 다루고, 문장 구조도 겹치지 않게 합니다.
+
+[허용 — 데이터 기반 가능성 제시]
+✓ "오후 시간대에 사용이 집중된 경향이 보입니다."
+✓ "잠금 해제가 23회로, 짧은 세션이 반복된 패턴이 나타납니다."
+✓ "~일 가능성이 있습니다" (단정 대신 가능성)
+
+핵심: '무엇을 하라'가 아니라 '데이터가 무엇을 보여주는지'만, 후보마다 다르게 묘사합니다.
 
 [출력 형식 — JSON만 출력, 설명/주석 금지]
 {
@@ -132,19 +150,6 @@ def _neutralize_clinical_language(text: str, fallback: str) -> str:
     return neutralized
 
 
-def _attach_evidence_context(
-    text: str, retrieved_evidence: Optional[List[Dict[str, Any]]] = None
-) -> str:
-    cleaned = str(text or "").strip()
-    if not retrieved_evidence:
-        return cleaned
-    evidence_cues = ("전문 자료", "자료에서도", "알려져", "보고돼")
-    if any(cue in cleaned for cue in evidence_cues):
-        return cleaned
-    suffix = " 전문 자료에서도 이런 사용 리듬을 스스로 알아차리는 과정이 자기인식에 중요한 신호로 다뤄져요."
-    return f"{cleaned}{suffix}".strip()
-
-
 def _sanitize_candidate(
     candidate: Dict[str, Any],
     retrieved_evidence: Optional[List[Dict[str, Any]]] = None,
@@ -164,10 +169,6 @@ def _sanitize_candidate(
             "이 리듬이 하루 사용 패턴에 영향을 준 것으로 보일 수 있어요.",
         ),
         "이 리듬이 하루 사용 패턴에 영향을 준 것으로 보일 수 있어요.",
-    )
-    sanitized["interpretation"] = _attach_evidence_context(
-        sanitized["interpretation"],
-        retrieved_evidence,
     )
 
     evidence = candidate.get("evidence")
@@ -208,7 +209,9 @@ def generate_pattern_candidates(
         API 예외 시 date는 snapshot에서 추출, pattern_candidates는 []로 반환.
     """
     fallback_date = (snapshot.get("date") or "").strip() if isinstance(snapshot, dict) else ""
-    fallback = {"date": fallback_date, "pattern_candidates": []}
+    # writer_error=True: API 예외/빈 응답/JSON 파싱 실패/dict 아님 등 "실패로 인한 빈 배열"임을 표시.
+    # 정상적으로 "패턴 없음"을 판단한 빈 배열에는 이 플래그를 넣지 않는다(아래 정상 반환 경로).
+    fallback = {"date": fallback_date, "pattern_candidates": [], "writer_error": True}
 
     try:
         client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
